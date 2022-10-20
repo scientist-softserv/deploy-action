@@ -3,7 +3,6 @@ on: workflow_call
 
 env:
   REGISTRY: ghcr.io
-  # PROJECT_NAME: # Set in local workflow
 
 jobs:
   deployment:
@@ -14,8 +13,8 @@ jobs:
       DEPLOY_IMAGE: ghcr.io/${{ github.repository }}
       WORKER_IMAGE: ghcr.io/${{ github.repository }}/worker
       HELM_EXPERIMENTAL_OCI: 1
-      HELM_RELEASE_NAME: ${{ env.PROJECT_NAME }}-${{ inputs.environment }}
-      KUBE_NAMESPACE: ${{ env.PROJECT_NAME }}-${{ inputs.environment }}
+      HELM_RELEASE_NAME: ${{ github.event.repository.name }}-${{ inputs.environment }}
+      KUBE_NAMESPACE: ${{ github.event.repository.name }}-${{ inputs.environment }}
       HELM_EXTRA_ARGS: >
         --values ops/${{ inputs.environment }}-deploy.yaml
       KUBECONFIG_FILE: ${{ secrets.KUBECONFIG_FILE }}
@@ -43,4 +42,4 @@ jobs:
         run: >-
           echo $KUBECONFIG_FILE | base64 -d > $KUBECONFIG;
           DOLLAR=$ envsubst < ops/${{ inputs.environment }}-deploy.tmpl.yaml > ops/${{ inputs.environment }}-deploy.yaml;
-          ./bin/helm_deploy ${{ env.PROJECT_NAME }}-${{ inputs.environment }} ${{ env.PROJECT_NAME }}-${{ inputs.environment }}
+          ./bin/helm_deploy ${{ github.event.repository.name }}-${{ inputs.environment }} ${{ github.event.repository.name }}-${{ inputs.environment }}
