@@ -19,9 +19,6 @@ jobs:
         --values ops/${{ inputs.environment }}-deploy.yaml
       KUBECONFIG_FILE: ${{ secrets.KUBECONFIG_FILE }}
       KUBECONFIG: ./kubeconfig.yml
-      SOLR_ADMIN_PASSWORD: ${{ secrets.SOLR_ADMIN_PASSWORD }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
     steps:
       - name: Set env
         run: >-
