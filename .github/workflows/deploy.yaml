@@ -1,5 +1,13 @@
 name: "Deploy"
-on: workflow_call
+on: 
+  workflow_call:
+    inputs:
+      k8s-release-name:
+        required: false
+        type: string
+      k8s-namespace:
+        required: false
+        type: string
 
 env:
   REGISTRY: ghcr.io
@@ -48,4 +56,4 @@ jobs:
           DOLLAR=$ envsubst < ops/${{ inputs.environment }}-deploy.tmpl.yaml > ops/${{ inputs.environment }}-deploy.yaml;
           export DEPLOY_IMAGE=ghcr.io/${REPO_LOWER};
           export WORKER_IMAGE=ghcr.io/${REPO_LOWER}/worker;
-          ./bin/helm_deploy ${{ github.event.repository.name }}-${{ inputs.environment }} ${{ github.event.repository.name }}-${{ inputs.environment }}
+          ./bin/helm_deploy ${{ inputs.k8s-release-name || format('{0}-{1}', github.event.repository.name, inputs.environment) }} ${{ inputs.k8s-namespace || format('{0}-{1}', github.event.repository.name, inputs.environment) }}
