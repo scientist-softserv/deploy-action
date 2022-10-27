@@ -30,6 +30,7 @@ jobs:
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
       SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
     steps:
       - name: Set env
         run: >-
