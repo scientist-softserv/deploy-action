@@ -31,6 +31,10 @@ jobs:
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
       SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
       REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+      GOOGLE_FONTS_KEY: ${{ secrets.GOOGLE_FONTS_KEY }}
+      IA_USER: ${{ secrets.IA_USER }}
+      IA_PASSWORD: ${{ secrets.IA_PASSWORD }}
+      INITIAL_ADMIN_PASSWORD: ${{ secrets.INITIAL_ADMIN_PASSWORD }}
     steps:
       - name: Set env
         run: >-
