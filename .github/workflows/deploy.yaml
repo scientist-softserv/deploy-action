@@ -25,16 +25,16 @@ jobs:
         --values ops/${{ inputs.environment }}-deploy.yaml
       KUBECONFIG_FILE: ${{ secrets.KUBECONFIG_FILE }}
       KUBECONFIG: ./kubeconfig.yml
-      SOLR_ADMIN_PASSWORD: ${{ secrets.SOLR_ADMIN_PASSWORD }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-      SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
-      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       GOOGLE_FONTS_KEY: ${{ secrets.GOOGLE_FONTS_KEY }}
-      IA_USER: ${{ secrets.IA_USER }}
       IA_PASSWORD: ${{ secrets.IA_PASSWORD }}
-      INITIAL_ADMIN_PASSWORD: ${{ secrets.INITIAL_ADMIN_PASSWORD }}
+      MAIL_PASS: ${{ secrets.MAIL_PASS }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+      SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      SOLR_ADMIN_PASSWORD: ${{ secrets.SOLR_ADMIN_PASSWORD }}
     steps:
       - name: Set env
         run: >-
